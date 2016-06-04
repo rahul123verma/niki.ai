@@ -27,15 +27,14 @@ $(document).ready(function(){
 	 $.post("rss.php",{rss_url: "https://www.reddit.com/.rss"},
        function(data, status){
         $('#loading_image').hide();
-		var final_dat=jQuery.parseJSON(data);
-		for( var i in final_dat ) 
+		var final_data=jQuery.parseJSON(data);
+		for( var i in final_data ) 
 		{
-		var n = final_dat[i].search("<table>");
-		console.log(n);
+		var n = final_data[i].search("<table>");
 		if(n>=0)
 	    {
 	
-		$('#menu').append('<li id='+i+'>'+final_dat[i]+'</li>');	
+		$('#menu').append('<li id='+i+'>'+final_data[i]+'</li>');	
 		}
         }});
 	   $( '#timer-countup' ).countdown( {
