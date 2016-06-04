@@ -25,7 +25,7 @@
 <script>
 $(document).ready(function(){
 	 $.post("rss.php",{rss_url: "https://www.reddit.com/.rss"},
-    function(data, status){
+       function(data, status){
         $('#loading_image').hide();
 		var final_dat=jQuery.parseJSON(data);
 		for( var i in final_dat ) 
@@ -38,7 +38,7 @@ $(document).ready(function(){
 		$('#menu').append('<li id='+i+'>'+final_dat[i]+'</li>');	
 		}
         }});
-	$( '#timer-countup' ).countdown( {
+	   $( '#timer-countup' ).countdown( {
 			from: 0,
 			to: 180	,
 			outputPattern: '$minute m: $second s'
