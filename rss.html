@@ -1,0 +1,74 @@
+<html>
+<head>
+<style type="text/css">
+ .topcorner
+    {
+     position:absolute;
+     top:0;
+     right :0;
+     margin-right: 33px;
+     border-style: solid;
+     border-width: medium;
+	 padding: 20px;
+	 background-color: rgba(42, 146, 165, 0.27);
+
+    }
+	#loading_image
+	{
+	 padding: 200px;
+	 padding-left:500px;
+	}
+	   
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+<script src="jquery.missofis-countdown.js"></script>
+<script>
+$(document).ready(function(){
+	 $.post("rss.php",{rss_url: "https://www.reddit.com/.rss"},
+    function(data, status){
+        $('#loading_image').hide();
+		var final_dat=jQuery.parseJSON(data);
+		for( var i in final_dat ) 
+		{
+		var n = final_dat[i].search("<table>");
+		console.log(n);
+		if(n>=0)
+	    {
+	
+		$('#menu').append('<li id='+i+'>'+final_dat[i]+'</li>');	
+		}
+        }});
+	$( '#timer-countup' ).countdown( {
+			from: 0,
+			to: 180	,
+			outputPattern: '$minute m: $second s'
+        });
+		
+		setInterval(fun, 1000);
+		function fun(){
+        var date = new Date();
+        $('#current_time').text(date.toISOString());
+		}
+		
+  });
+
+</script>
+</head>
+<body>
+<div class="topcorner">
+<p>Spent time</p>
+<p class="timer-holder"><span id="timer-countup"></span></p>
+<p> Current system time in ISO 8601 format</p>
+<p id="current_time"></p>
+</div>
+<div id="main">
+
+<ul id="menu"></ul>
+</div>
+<div id="loading_image">
+
+<img src="gears.gif" alt="Smiley face" height="150" width="150">
+<p> Please wait.......</p>
+</div>
+</body>
+</html>
