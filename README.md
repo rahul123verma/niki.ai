@@ -21,5 +21,5 @@ In background Js called a web service. Service is defiend in rss.php.
 Read Rss content by PHP and return back to js for displaying content in index.html
 
 library used:-
-Jquery
+Jquery,
 jquery.missofis-countdown
